@@ -7,7 +7,7 @@ st.title("Zena's Amazing Athleisure Catalog")
 
 #session = get_active_session()
 cnx = st.connection("snowflake")
-session = cnx.session
+session = cnx.session()
 
 # get a list of colors for a drop list selection
 table_colors = session.table("zenas_athleisure_db.products.catalog_for_website").select(col("COLOR_OR_STYLE"))
