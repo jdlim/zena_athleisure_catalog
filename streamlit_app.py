@@ -10,7 +10,7 @@ cnx = st.connection("snowflake")
 session = cnx.session
 
 # get a list of colors for a drop list selection
-table_colors = session.table("zenas_athleisure_db.products.catalog_for_website").sql("select color_or_style from catalog_for_website")
+table_colors = session.sql("select color_or_style from catalog_for_website")
 pd_colors = table_colors.to_pandas()
 
 # Oyt the list of colors into a drop list selector 
@@ -20,7 +20,7 @@ option = st.selectbox('Pick a sweatsuit color or style:', pd_colors)
 product_caption = 'Our warm, comfortable, ' + option + ' sweatsuit!'
 
 # use the color selected to go back and get all the info from the database
-table_prod_data = session.sql("select file_name, price, size_list, upsell_product_desc, file_url from catalog_for_website where color_or_style = '" + option + "';")
+table_prod_data = session.sql("select file_name, price, size_list, upsell_product_desc, file_url from zenas_athleisure_db.products.catalog_for_website where color_or_style = '" + option + "';")
 pd_prod_data = table_prod_data.to_pandas() 
 
 #st.write(pd_prod_data)
