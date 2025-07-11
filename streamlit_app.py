@@ -7,10 +7,10 @@ st.title("Zena's Amazing Athleisure Catalog")
 
 #session = get_active_session()
 cnx = st.connection("snowflake")
-session = cnx.session.table("zenas_athleisure_db.products.catalog_for_website")
+session = cnx.session
 
 # get a list of colors for a drop list selection
-table_colors = session.sql("select color_or_style from catalog_for_website")
+table_colors = session.table("zenas_athleisure_db.products.catalog_for_website").sql("select color_or_style from catalog_for_website")
 pd_colors = table_colors.to_pandas()
 
 # Oyt the list of colors into a drop list selector 
